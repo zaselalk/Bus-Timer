@@ -34,17 +34,41 @@ li a:hover {
 }
 .wh_go{
     padding-left: 37%;
+    padding-top:1%;
 }
 .container{
-    padding-left: 40%;
+    padding-left:2%;
+    padding-bottom: 1%;
     background-color: aliceblue;
+    margin-left: 40%;
+    margin-right: 40%;
+
 
 }
 .i_at{
-    font-size: 30px;
+    font-size: 1rem;
 }
 .i_want{
-    font-size: 30px;
+    font-size: 1rem;
 }
-
-
+.loc_now{
+    width:90%;
+    height: 40px;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+}
+.loc_to_go{
+    width:90%;
+    height: 40px;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+}
+.find_bus_cl{
+    padding-top: 15px;
+}
+.find_bus{
+    width:90%;
+    height:40px;
+    border-radius: 5px;
+    background-color: #5641D7;
+}
