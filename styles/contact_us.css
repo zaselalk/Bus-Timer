@@ -1,0 +1,40 @@
+
+.container{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+}
+.container form{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+.container form h2{
+    font-family: Inria Sans;
+    font-size: 2rem;
+    font-weight: lighter;
+}
+.container form input{
+    height: 30px;
+}
+.container form input, textarea{
+    padding-left: 10px;
+    border-radius: 5px;
+}
+.container form textarea{
+    resize: none;
+    padding-top: 5px;
+}
+.container img{
+    width: 25vw;
+}
+.container form input[type="submit"]{
+    width: 30%;
+    height: 40px;
+    color: white;
+    background-color: #3A86FF;
+    border: none;
+}
