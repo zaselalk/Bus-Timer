@@ -1,0 +1,26 @@
+.container{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+.container form{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+.container form input{
+    padding-left: 5px;
+    height: 30px;
+    border-radius: 5px;
+}
+.container form h2{
+    float: left;
+}
+.container form input[type="submit"]{
+    color: white;
+    background-color: #3A86FF;
+    border: none;
+}
