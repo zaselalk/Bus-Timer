@@ -6,17 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus time</title>
     <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet" href="./styles/bus_time.css">
 </head>
 <body>
     <nav>
         <div class="logo">
             BUS TIMER
         </div>
-        <ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
             <li><a href="home.html">Home</a></li>
             <li><a href="time_table.html">Time Table</a></li>
             <li><a href="contact_us.html">Contact Us</a></li>
         </ul>
     </nav>
+    <div class="container">
+        <div class="container-header">
+            <p class="time-header">
+                Next Bus will arrive at <br>
+                <span id="bus-time">5.00 PM</span>
+            </p>
+            <p>Now bus at,</p>
+            <div class="location-label">
+                Miriswaththa
+            </div>
+        </div>
+        <img src="./images/bus-time/bus.png" alt="bus">
+    </div>
+    <script src="./scripts/nav-responsive.js"></script>
 </body>
 </html>
