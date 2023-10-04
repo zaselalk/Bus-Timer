@@ -1,0 +1,50 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+.nav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #8338EC;
+}
+li{
+    float:left;
+}
+.bus_ti{
+    float: right;
+  }
+  
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+li a:hover {
+    background-color: #111111;
+}
+.user_name{
+    padding-left:37%;
+    padding-top: 10%;
+}
+.wh_go{
+    padding-left: 37%;
+}
+.container{
+    padding-left: 40%;
+    background-color: aliceblue;
+
+}
+.i_at{
+    font-size: 30px;
+}
+.i_want{
+    font-size: 30px;
+}
+
+
