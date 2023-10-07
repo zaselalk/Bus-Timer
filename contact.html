@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bus time</title>
   <link rel="stylesheet" href="./styles/global.css">
-  <link rel="stylesheet" href="./styles/bus_time.css">
+  <link rel="stylesheet" href="./styles/contact_us.css">
 </head>
 
 <body>
@@ -23,21 +23,19 @@
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
       <li><a href="timetable.html">Time Table</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="contactus.html">Contact Us</a></li>
     </ul>
   </nav>
   <div class="container">
-    <div class="container-header">
-      <p class="time-header">
-        Next Bus will arrive at <br>
-        <span id="bus-time">5.00 PM</span>
-      </p>
-      <p>Now bus at,</p>
-      <div class="location-label">
-        Miriswaththa
-      </div>
-    </div>
-    <img src="./images/bus-time/bus.png" alt="bus">
+    <form action="contact.php">
+      <h2>Contact Us</h2>
+      <input type="text" name="name" required placeholder="Full Name">
+      <input type="tel" name="tel" placeholder="Phone Number">
+      <input type="text" name="email" required placeholder="E mail">
+      <textarea name="message" cols="30" rows="10" required placeholder="Your message"></textarea>
+      <input type="submit" name="submit" value="SEND">
+    </form>
+    <img src="./images/contact-us/contact-us.jpeg" alt="contactUs">
   </div>
   <script src="./scripts/nav-responsive.js"></script>
 </body>
