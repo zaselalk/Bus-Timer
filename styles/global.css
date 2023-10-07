@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+* {
+    font-family: "Inter";
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    overflow: hidden;
+    background-color: #8338EC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 10vh;
+    padding: 0 3%;
+}
+
+nav .logo {
+    color: white;
+    font-size: 1.3rem;
+}
+
+nav ul {
+    display: flex;
+    gap: 7%;
+}
+
+nav ul li {
+    list-style-type: none;
+    height: 100%;
+    width: 10vw;
+}
+
+nav ul li a {
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5vh 0;
+    text-align: center;
+}
+
+nav ul li:hover {
+    transition: 500ms ease-in;
+    background-color: #5a299f;
+}
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 10vh;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 50%;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .nav-links a {
+        width: 100vw;
+        padding: 15px 0;
+        font-size: 1.2rem;
+        color: white;
+        text-decoration: none;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .nav-links li:hover {
+        background-color: #5a299f;
+    }
+}

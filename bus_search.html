@@ -1,28 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Search</title>
-    <link rel="stylesheet" href="bus_search.css" type="text/css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Search</title>
+  <link rel="stylesheet" href="bus_search.css" type="text/css">
 </head>
+
 <body>
-    <ul class="nav">
-    <li><a link href="">Bus Timer</a></li>
-    <li class='bus_ti'><a link href="">Home</a></li>
-    <li class='bus_ti'><a link href="">Time Table</a></li>
-    <li class='bus_ti'><a link href="">Contact</a></li>
-</ul>
-    <p class="user_name">Hi! Asela</p>
-<div class ="wh_go">
-        <h2>Where Would You Go?</h2></div>
- <div class="container">
+  <nav>
+    <div class="logo">
+      <img src="./images/logo-light.png" alt="logo" width="100px">
+    </div>
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="timetable.html">Time Table</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+  <p class="user_name">Hi! Asela</p>
+  <div class="wh_go">
+    <h2>Where Would You Go?</h2>
+  </div>
+  <div class="container">
     <div class="i_at">I am at</div>
-    <input type="text" name="iamat">
+    <select name="location_now" class="loc_now">
+      <option value=""></option>
+      <option value=""></option>
+      <option value=""></option>
+      <option value=""></option>
+    </select>
     <div class="i_want">I want to go to</div>
-    <input type="text" name="iwantgo">
-    <div class=""><input type ="submit" value="Find My Bus"></div>
-</div>
+    <div class="">
+      <select name="location_to_go" class="loc_to_go">
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="find_bus_cl">
+      <input type="submit" name="find_my_bus" value="Find My Bus" class="find_bus">
+    </div>
+  </div>
 
 </body>
+
 </html>
