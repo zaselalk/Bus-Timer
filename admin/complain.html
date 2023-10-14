@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sub Warden Dashboard</title>
+  <!-- Include Bootstrap CSS (replace with local Bootstrap if needed) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    /* Add your custom styles for the dashboard here */
+    .container {
+      padding: 50px;
+    }
+
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between p-3">
+      <div>
+        <a class="navbar-brand" href="/pages/subwarden/">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link active" href="./profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./settings.html">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./complain.html">Complaints</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Wi-Fi Connectivity Issues</h5>
+            <p class="card-text">
+              Many hostel residents are experiencing frequent Wi-Fi
+              connectivity problems. The inconsistent internet connection
+              disrupts their ability to study, work, or relax with online
+              entertainment. This issue has been ongoing for several weeks,
+              causing frustration and inconvenience to the hostel community.
+            </p>
+            <div>Room No: 209</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Noise Disturbances During Quiet Hours</h5>
+            <p class="card-text">
+              Despite clear quiet hours policy, there have been recurrent
+              disturbances during the night, with loud conversations, music,
+              and other disruptive activities. This is affecting the quality
+              of sleep and causing discomfort to those who need a peaceful
+              environment to rest and prepare for the next day.
+            </p>
+            <div>Room No: 209</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Hygiene and Cleanliness Concerns</h5>
+            <p class="card-text">
+              Some common areas, bathrooms, and kitchens in the hostel have
+              not been adequately cleaned or maintained. This is a major
+              concern for the residents, as it not only affects their overall
+              living conditions but also poses health risks. Proper cleaning
+              schedules and maintenance are needed urgently.
+            </p>
+            <div>Room No: 209</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Security and Access Control Issues</h5>
+            <p class="card-text">
+              There have been reports of unauthorized individuals gaining
+              access to the hostel premises, which raises concerns about the
+              safety and security of residents. The malfunctioning of key card
+              systems and ineffective security measures need to be addressed
+              to ensure the safety and well-being of everyone residing in the
+              hostel.
+            </p>
+            <div>Room No: 209</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 card bg-danger text-white pt-3">
+        <h6>Overdue Complains</h6>
+        <p>Total: 03</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Bootstrap JS and Popper.js (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
