@@ -6,7 +6,7 @@ include_once 'partials/navbar.php';
 <body>
 <div class="container">
     <div class="sub-container">
-        <h2>REGISTER</h2>
+        <h1 class="text-primary">Register</h1>
         <form action="register.php" method="POST">
             <div class="mb-3">
                 <label for="name" class="form-label">Name:</label>
@@ -31,7 +31,7 @@ include_once 'partials/navbar.php';
             <input type="submit" class="btn btn-primary" value="Register">
             <input type="reset" class="btn btn-secondary" value="Cancel">
         </form>
-        <p>Already have an account? <a href="login.html">Login</a></p>
+        <p>Already have an account? <a href="login.php">Login</a></p>
     </div>
     <img class="bus-track" src="./images/login,register/bus-track.jpg" alt="bus-track">
 </div>
