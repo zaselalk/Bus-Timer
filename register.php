@@ -3,34 +3,37 @@ include_once 'partials/header.php';
 $title = "Time Table";
 include_once 'partials/navbar.php';
 ?>
-
+<body>
 <div class="container">
     <div class="sub-container">
         <h2>REGISTER</h2>
         <form action="register.php" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" name="name" required><br><br>
-            
-            <label for="email">Email:</label>
-            <input type="email" name="email" required><br><br>
-
-            <label for="password">Password:</label>
-            <input type="password" name="password" required><br><br>
-            
-            <label for="date_of_birth">Date of Birth:</label>
-            <input type="date" name="date_of_birth"><br><br>
-            
-            <label for="phone_number">Phone Number:</label>
-            <input type="tel" name="phone_number"><br><br>
-            
-            <label for="user_profile_pic">Profile Picture:</label>
-            <input type="file" name="user_profile_pic"><br><br>
-            <input type="submit" value="Register">
-            <input type="reset" value="Cancel">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="date_of_birth" class="form-label">Date of Birth:</label>
+                <input type="date" class="form-control" name="date_of_birth">
+            </div>
+            <div class="mb-3">
+                <label for="phone_number" class="form-label">Phone Number:</label>
+                <input type="tel" class="form-control" name="phone_number">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Register">
+            <input type="reset" class="btn btn-secondary" value="Cancel">
         </form>
         <p>Already have an account? <a href="login.html">Login</a></p>
     </div>
-    <img class='align-middle' src="./images/login,register/bus-track.jpg" alt="bus-track">
+    <img class="bus-track" src="./images/login,register/bus-track.jpg" alt="bus-track">
 </div>
 <script src="./scripts/nav-responsive.js"></script>
 
@@ -41,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data3 = $_POST['password'];
     $data4 = $_POST['date_of_birth'];
     $data5 = $_POST['phone_number'];
-    $data6 = $_POST['user_profile_pic'];
 
     $servername = "localhost";
     $username = "root";
@@ -54,9 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql_match = "INSERT INTO users (name, email, hash_password, date_of_birth, phone_number, user_profile_pic) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql_match = "INSERT INTO users (name, email, hash_password, date_of_birth, phone_number) VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql_match);
-    mysqli_stmt_bind_param($stmt, "ssssss", $data1, $data2, $data3, $data4, $data5, $data6);
+    mysqli_stmt_bind_param($stmt, "sssss", $data1, $data2, $data3, $data4, $data5);
 
     if (mysqli_stmt_execute($stmt)) {
         echo 'Data inserted successfully</br>';

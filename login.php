@@ -27,6 +27,13 @@
 </form></div>
     <div class="col-md-6"></div>
   </div>
+  <div class="form-text">
+  <p>
+        If you are new,then <a href='register.php' target="_blank">sign_up </a> here
+    </p>
+</div>
+
+  
 
 
 </body>
