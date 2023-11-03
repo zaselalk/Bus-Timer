@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("ss", $bus_no, $complain);
 
+        
         if ($stmt->execute()) {
             $bus_no = $complain = "";
             echo "<h5 class='text-success'>Complaint submitted successfully</h5>";
