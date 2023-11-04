@@ -14,7 +14,7 @@
     ORDER BY bus_station ASC
   ";
 
-  $result = $connect->query($query);
+  $result = $conn ->query($query);
 
   ?>
   <link href="styles/bootstrap.min.css" rel="stylesheet">
