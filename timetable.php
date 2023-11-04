@@ -6,11 +6,7 @@
   <title>Bus Timetable</title>
   <?php include_once 'partials/header.php'; ?>
   <?php
-  $dbHost = 'localhost';
-  $dbUser = 'root';
-  $dbPass = 'root1234';
-
-  $connect = new PDO("mysql:host=localhost;dbname=bus_timer", $dbUser, $dbPass);
+   include_once 'conn.php';
 
   $query = "
     SELECT bus_station FROM bus_route 
