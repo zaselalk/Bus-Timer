@@ -32,7 +32,7 @@
         </ul>
         <form class="d-flex" role="search">
           
-          <button class="btn btn-outline-success" type="submit">Login / Register</button>
+          <button class="btn btn-outline-success" type="submit"><a href='login.php'>Login / Register</a></button>
           
         </form>
       </div>
