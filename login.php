@@ -29,7 +29,7 @@
   </div>
   <div class="form-text">
   <p>
-        If you are new,then <a href='register.php' target="_blank">sign_up </a> here
+        If you are new,then <a href='register.php' >sign_up </a> here
     </p>
 </div>
 </body>
@@ -43,40 +43,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // You should add your database connection logic here.
-    $servername = "localhost";
-    $username = "root";
-    $password = "root1234";
-    $database = "bus_route";
+    include_once 'conn.php';
 
-    // Create a connection to the database
-    $conn = mysqli_connect($servername, $username, $password, $database);
-
-    // Check if the connection was successful
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    // Perform proper password hashing for security
-    // $password = password_hash($password, PASSWORD_DEFAULT);
 
     // Use prepared statements to prevent SQL injection
     $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "ss", $email, $password);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$email, $password]);
+    $user = $stmt->fetch();
 
-    if (mysqli_num_rows($result) == 1) {
-        // User is authenticated, redirect to a welcome page or perform other actions.
-        header("Location: welcome.php");
-        exit();
+    if ($user) {
+        $_SESSION['user'] = $user;
+        header("Location: index.php");
     } else {
-        $error_message = "Invalid email or password. Please try again.";
+        echo "<p class='alert alert-danger'>Invalid email or password</p>";
     }
 
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
+
 }
 
 
