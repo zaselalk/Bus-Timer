@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1 class="mt-3 mb-3">Contact Us</h1>
         <div class="row">
             <div class="col-md-6">
-                <h2 class="mb-3">Complaints</h2>
+                <h2 class="mb-3">Complaints:-</h2>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <input type="hidden" name="complaint_form" value="1">
                     <div class="form-group">
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
             </div>
             <div class="col-md-6">
-                <h2 class="mb-3">Suggestions</h2>
+                <h2 class="mb-3">Suggestions:-</h2>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <input type="hidden" name="suggestion_form" value="1">
                     <div class="form-group">
