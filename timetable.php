@@ -6,11 +6,7 @@
   <title>Bus Timetable</title>
   <?php include_once 'partials/header.php'; ?>
   <?php
-  $dbHost = 'localhost';
-  $dbUser = 'root';
-  $dbPass = 'root1234';
-
-  $connect = new PDO("mysql:host=localhost;dbname=bus_timer", $dbUser, $dbPass);
+   include_once 'conn.php';
 
   $query = "
     SELECT bus_station FROM bus_route 
@@ -18,7 +14,12 @@
     ORDER BY bus_station ASC
   ";
 
-  $result = $connect->query($query);
+  $stmt = $conn->prepare($query);
+  $stmt->execute();
+
+  $result = $stmt->fetchAll();
+
+
 
   ?>
   <link href="styles/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +51,7 @@
       <div class="col-md-6">
         <?php
         $query = "SELECT * FROM bus_route";
-        $statement = $connect->prepare($query);
+        $statement = $conn->prepare($query);
         $statement->execute();
         $timetable = $statement->fetchAll(PDO::FETCH_ASSOC);
 

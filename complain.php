@@ -1,9 +1,11 @@
 <?php
 include_once '../partials/header.php';
+// include_once '../conn.php';
+include_once './admin_navbar.php';
 
 $servername = "localhost";
 $username = "root";
-$password = "root1234";
+$password = "";
 $dbname = "bus_timer";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -66,6 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
 ?>
 
 <div class="container mt-4">
+<?php
+  include_once './admin_navbar.php';
+ ?>
     <h1>Manage Bus Complaints</h1>
 
     <form method="POST">
