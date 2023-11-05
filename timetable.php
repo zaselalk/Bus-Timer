@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +24,7 @@
   <script src="scripts/bootstrap.bundle.min.js"></script>
   <script src="scripts/dselect.js"></script>
 </head>
+
 <body>
   <?php include_once 'partials/navbar.php'; ?>
 
@@ -56,7 +58,9 @@
         echo '<ul>';
         foreach ($timetable as $row) {
           echo '<li>' . $row['bus_no'] . ' - ' . $row['bus_station'] . ' - ' . $row['time'] . '</li>';
-        }
+        ?>
+          <a href="./bus.php?id=<?php echo $row['bus_no'] ?>">View Bus</a>
+        <?php }
         echo '</ul>';
         ?>
       </div>
@@ -100,4 +104,5 @@
     });
   </script>
 </body>
+
 </html>
