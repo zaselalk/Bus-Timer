@@ -1,4 +1,6 @@
 <?php
+include_once 'partials/header.php';
+
 $host = "localhost";
 $username = "root";
 $password = "1234";
@@ -9,11 +11,11 @@ $bus_no_error = $complain_error = $message_error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["complaint_form"])) {
-       
+
         $bus_no = htmlspecialchars($_POST["bus_no"]);
         $complain = htmlspecialchars($_POST["complain"]);
 
-       
+
         $mysqli = new mysqli($host, $username, $password, $database);
 
         if ($mysqli->connect_error) {
@@ -24,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("ss", $bus_no, $complain);
 
-        
+
         if ($stmt->execute()) {
             $bus_no = $complain = "";
             echo "<h5 class='text-success'>Complaint submitted successfully</h5>";
@@ -50,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("s", $message);
 
         if ($stmt->execute()) {
-            $message = ""; 
+            $message = "";
             echo "<h5 class='text-success'>Suggestion submitted successfully</h5>";
         } else {
             echo "Error: " . $mysqli->error;
@@ -64,13 +66,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
 </head>
+
 <body>
+    <?php include_once 'partials/navbar.php'; ?>
     <div class="container">
         <h1 class="mt-3 mb-3">Contact Us</h1>
         <div class="row">
@@ -105,4 +110,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="scripts/bootstrap.min.js"></script>
 </body>
+
 </html>
