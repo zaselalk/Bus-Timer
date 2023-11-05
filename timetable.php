@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bus Timetable</title>
   <?php include_once 'partials/header.php'; ?>
   <?php
-  $dbHost = 'localhost';
-  $dbUser = 'root';
-  $dbPass = 'root1234';
-
-  $connect = new PDO("mysql:host=localhost;dbname=bus_timer", $dbUser, $dbPass);
+  include_once 'conn.php';
 
   $query = "
     SELECT bus_station FROM bus_route 
@@ -18,13 +15,16 @@
     ORDER BY bus_station ASC
   ";
 
-  $result = $connect->query($query);
+  $stmt = $conn->prepare($query);
+  $stmt->execute();
 
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   ?>
   <link href="styles/bootstrap.min.css" rel="stylesheet">
   <script src="scripts/bootstrap.bundle.min.js"></script>
   <script src="scripts/dselect.js"></script>
 </head>
+
 <body>
   <?php include_once 'partials/navbar.php'; ?>
 
@@ -50,7 +50,7 @@
       <div class="col-md-6">
         <?php
         $query = "SELECT * FROM bus_route";
-        $statement = $connect->prepare($query);
+        $statement = $conn->prepare($query);
         $statement->execute();
         $timetable = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -58,7 +58,9 @@
         echo '<ul>';
         foreach ($timetable as $row) {
           echo '<li>' . $row['bus_no'] . ' - ' . $row['bus_station'] . ' - ' . $row['time'] . '</li>';
-        }
+        ?>
+          <a href="./bus.php?id=<?php echo $row['bus_no'] ?>">View Bus</a>
+        <?php }
         echo '</ul>';
         ?>
       </div>
@@ -72,7 +74,7 @@
             $currentTime = date('H:i:s');
 
             $query = "SELECT bus_no, time FROM bus_route WHERE bus_station = :station AND time > :current_time ORDER BY time ASC LIMIT 5";
-            $statement = $connect->prepare($query);
+            $statement = $conn->prepare($query);
             $statement->execute(array(':station' => $selectedStation, ':current_time' => $currentTime));
             $timetable = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -102,4 +104,5 @@
     });
   </script>
 </body>
+
 </html>
