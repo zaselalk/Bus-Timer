@@ -25,8 +25,12 @@
 
       <li class="nav-item">
         <a class="nav-link" href="/bus-timer/logout.php">Logout</a>
-
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../">View Web Page</a>
+      </li>
+
+
     </ul>
   </div>
 </nav>
