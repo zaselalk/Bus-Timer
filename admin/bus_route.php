@@ -2,6 +2,7 @@
 include_once '../partials/header.php';
 include_once '../conn.php';
 include_once './admin_navbar.php';
+include_once './is_admin.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
     $bus_no = $_POST['bus_no'];
@@ -10,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
 
     $insert_bus = "INSERT INTO bus_route (bus_no, bus_station, time) VALUES ('$bus_no', '$bus_station', '$time')";
 
-    if($conn->query($insert_bus) === TRUE) {
+    if ($conn->query($insert_bus) === TRUE) {
         echo "Bus route created successfully.";
     } else {
-        echo "Error creating bus route: ";
+        echo "Error creating bus route ";
     }
 }
 
@@ -42,26 +43,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
     $stmt->bindParam(':bus_station', $bus_station);
     $stmt->bindParam(':time', $time);
     $stmt->bindParam(':route_id', $route_id);
-    
+
     if ($stmt->execute()) {
         echo "Bus route updated successfully.";
     } else {
         echo "Error updating bus route: " . $stmt->errorInfo();
     }
-    
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
     $route_id = $_GET['delete'];
-$stmt = $conn->prepare("DELETE FROM bus_route WHERE id=:route_id");
-$stmt->bindParam(':route_id', $route_id);
+    $stmt = $conn->prepare("DELETE FROM bus_route WHERE id=:route_id");
+    $stmt->bindParam(':route_id', $route_id);
 
-if ($stmt->execute()) {
-    echo "Bus route deleted successfully.";
-} else {
-    echo "Error deleting bus route: " . $stmt->errorInfo();
-}
-$stmt->closeCursor(); // Explicitly close the cursor to enable the next statement to be executed
+    if ($stmt->execute()) {
+        echo "Bus route deleted successfully.";
+    } else {
+        echo "Error deleting bus route: " . $stmt->errorInfo();
+    }
+    $stmt->closeCursor(); // Explicitly close the cursor to enable the next statement to be executed
 
 }
 ?>
@@ -69,15 +69,27 @@ $stmt->closeCursor(); // Explicitly close the cursor to enable the next statemen
 <div class="container mt-4">
     <h1>Manage Bus Routes</h1>
     <?php
- 
- ?>
+
+    ?>
 
     <form method="POST">
         <h3>Create Bus Route</h3>
-            <input type="text" name="bus_no" class="form-control" placeholder="Bus Number" required>
-            <input type="text" name="bus_station" class="form-control" placeholder="Bus Station" required>
-            <input type="time" name="time" class="form-control" required>
-        <button type="submit" name="create" class="btn btn-primary">Create Bus Route</button>
+        <div class="border my-4">
+            <div class="row p-4 ">
+                <div class="col-md-4">
+                    <input type="text" name="bus_no" class="form-control" placeholder="Bus Number" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="bus_station" class="form-control" placeholder="Bus Station" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="time" name="time" class="form-control" required>
+                </div>
+                <button type="submit" name="create" class="btn btn-primary my-3">Create Bus Route</button>
+            </div>
+
+        </div>
+
     </form>
 
     <h3>Bus Routes List</h3>
@@ -110,35 +122,34 @@ $stmt->closeCursor(); // Explicitly close the cursor to enable the next statemen
     </table>
 
     <?php
-if (isset($_GET['edit'])) {
-    $route_id = $_GET['edit'];
-    $stmt = $conn->prepare("SELECT * FROM bus_route WHERE id = :route_id");
-    $stmt->bindParam(':route_id', $route_id);
-    $stmt->execute();
-    $route = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (isset($_GET['edit'])) {
+        $route_id = $_GET['edit'];
+        $stmt = $conn->prepare("SELECT * FROM bus_route WHERE id = :route_id");
+        $stmt->bindParam(':route_id', $route_id);
+        $stmt->execute();
+        $route = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($route) {
-        ?>
-        <h3>Edit Bus Route</h3>
-        <form method="POST">
-            <input type="hidden" name="route_id" value="<?php echo $route['id']; ?>">
-            <div class="mb-3">
-                <input type="text" name="bus_no" value="<?php echo $route['bus_no']; ?>" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <input type="text" name="bus_station" value="<?php echo $route['bus_station']; ?>" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <input type="time" name="time" value="<?php echo $route['time']; ?>" class="form-control" required>
-            </div>
-            <button type="submit" name="update" class="btn btn-success">Update Bus Route</button>
-        </form>
-        <?php
-    } else {
-        echo "Bus route not found.";
+        if ($route) {
+    ?>
+            <h3>Edit Bus Route</h3>
+            <form method="POST">
+                <input type="hidden" name="route_id" value="<?php echo $route['id']; ?>">
+                <div class="mb-3">
+                    <input type="text" name="bus_no" value="<?php echo $route['bus_no']; ?>" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="bus_station" value="<?php echo $route['bus_station']; ?>" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <input type="time" name="time" value="<?php echo $route['time']; ?>" class="form-control" required>
+                </div>
+                <button type="submit" name="update" class="btn btn-success">Update Bus Route</button>
+            </form>
+    <?php
+        } else {
+            echo "Bus route not found.";
+        }
     }
-}
-?>
+    ?>
 
 </div>
-<a class="btn btn-secondary mt-3" href="../admin.php">Back to Admin Page</a>
