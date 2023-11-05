@@ -1,7 +1,7 @@
 <?php
 $dbHost = 'localhost';
 $dbUser = 'root';
-$dbPass = '';
+$dbPass = 'root1234';
 
 try {
     $conn = new PDO("mysql:host=$dbHost;dbname=bus_timer", $dbUser, $dbPass);
