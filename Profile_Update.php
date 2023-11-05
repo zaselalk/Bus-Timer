@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-
+    <title>Update User Profile</title>
+    <?php include_once 'partials/header.php'; ?>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
+    <?php include_once 'partials/navbar.php'; ?>
     <div class="container">
         <h1 class="text-primary">User Profile</h1>
+<<<<<<< HEAD
 
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -45,6 +49,8 @@
         }
         ?>
 
+=======
+>>>>>>> cf16fba88f6bfa5cc075f7f01a87799d1ef684af
         <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -76,7 +82,14 @@
     </div>
 
     <?php
+    include_once 'conn.php';
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $newName = $_POST['name'];
+        $newEmail = $_POST['email'];
+        $newDateOfBirth = $_POST['date_of_birth'];
+        $newPhoneNumber = $_POST['phone_number'];
+
         if (isset($_FILES["profile_picture"]) && $_FILES["profile_picture"]["error"] == UPLOAD_ERR_OK) {
             $uploadDir = 'C:\wamp64\www\Bus Timer Project\Bus-Timer\profile_picture';
 
@@ -84,8 +97,9 @@
             $uploadPath = $uploadDir . '/' . $filename;
 
             if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $uploadPath)) {
-                echo "Profile picture uploaded successfully. The file is stored as: $uploadPath";
+                echo '<div class="alert alert-success" role="alert">Profile picture uploaded successfully.';
 
+<<<<<<< HEAD
                 $servername = "localhost";
                 $username = "root";
                 $password = "root1234";
@@ -111,6 +125,16 @@
 
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
+=======
+                try {
+                    $user_id = $_SESSION['user']['user_id'];
+                    $sql = "UPDATE users SET name = ?, email = ?, date_of_birth = ?, phone_number = ?, user_profile_pic = ? WHERE user_id = ?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute([$newName, $newEmail, $newDateOfBirth, $newPhoneNumber, $filename, $user_id]);
+                } catch (PDOException $e) {
+                    echo '<div class="alert alert-danger" role="alert">Error updating the profile.</div>';
+                }
+>>>>>>> cf16fba88f6bfa5cc075f7f01a87799d1ef684af
             } else {
                 echo "Error uploading the profile picture.";
             }
@@ -119,9 +143,6 @@
         }
     }
     ?>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
