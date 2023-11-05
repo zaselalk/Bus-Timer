@@ -34,9 +34,9 @@ include_once 'conn.php';
         </form>
         <p>Already have an account? <a href="login.php">Login</a></p>
     </div>
-    <img class="bus-track" src="./images/login,register/bus-track.jpg" alt="bus-track">
+    
 </div>
-<script src="./scripts/nav-responsive.js"></script>
+
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
