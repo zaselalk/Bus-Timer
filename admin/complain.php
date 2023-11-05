@@ -2,8 +2,7 @@
 include_once '../partials/header.php';
 include_once '../conn.php';
 include_once './admin_navbar.php';
-
-
+include_once './is_admin.php';
 
 
 
@@ -16,9 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
     if ($conn->query($sql) === TRUE) {
         echo "Complaint created successfully.";
     } else {
-        echo "Error creating complaint: " ;
+        echo "Error creating complaint: ";
     }
-
 }
 
 $complaintList = [];
@@ -27,8 +25,8 @@ $complaintList = [];
 $get_complains = "SELECT * FROM bus_complains";
 $stmt = $conn->query($get_complains);
 
-if($stmt->rowCount() > 0){
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+if ($stmt->rowCount() > 0) {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $complaintList[] = $row;
     }
 }
@@ -36,12 +34,12 @@ if($stmt->rowCount() > 0){
 ?>
 
 <div class="container mt-4">
-<?php
-  include_once './admin_navbar.php';
- ?>
+    <?php
+    include_once './admin_navbar.php';
+    ?>
     <h1>Manage Bus Complaints</h1>
 
- 
+
 
     <h3>Complaints List</h3>
     <table class="table">
@@ -72,5 +70,3 @@ if($stmt->rowCount() > 0){
 
 
 </div>
-
-
