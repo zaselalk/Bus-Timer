@@ -25,52 +25,52 @@
   ?>
 
   <div class="container">
-  
-    <div class="row g-2  justify-content-md-center">
-      <div class="col-md-4 ">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Manage Categories</h5>
-            <a href="/jobs/admin/categories" class="btn btn-primary">Manage</a>
+    <div class="col-md-8">
+      <div class="row g-2 ">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Manage Categories</h5>
+              <a href="/jobs/admin/categories" class="btn btn-primary">Manage</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 ">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Manage Sources</h5>
-            <a href="/jobs/admin/sources" class="btn btn-primary">Manage</a>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Manage Sources</h5>
+              <a href="/jobs/admin/sources" class="btn btn-primary">Manage</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 ">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Manage FAQ</h5>
-            <a href="/jobs/admin/faq" class="btn btn-primary">Manage</a>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Manage FAQ</h5>
+              <a href="/jobs/admin/faq" class="btn btn-primary">Manage</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 ">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Manage Company</h5>
-            <a href="#" class="btn btn-primary">Manage</a>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Manage Company</h5>
+              <a href="#" class="btn btn-primary">Manage</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 ">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Manage Jobs</h5>
-            <a href="#" class="btn btn-primary">Manage</a>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Manage Jobs</h5>
+              <a href="#" class="btn btn-primary">Manage</a>
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
- 
 
 
 

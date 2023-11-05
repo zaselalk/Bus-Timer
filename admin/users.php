@@ -1,86 +1,58 @@
 <?php
+
 include_once '../partials/header.php';
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "bus_timer";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!isset($_SESSION['user'])) {
+    header("location: ../index.php");
 }
 
+include_once './admin_navbar.php';
+include_once '../conn.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
-
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $date_of_birth = $_POST['date_of_birth'];
-    $phone_number = $_POST['phone_number'];
-    $is_admin = $_POST['is_admin'];
+try {
 
 
-    $stmt = $conn->prepare("INSERT INTO users (name, email, hash_password, date_of_birth, phone_number, is_admin) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $name, $email, $password, $date_of_birth, $phone_number, $is_admin);
-    if ($stmt->execute()) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = md5($_POST['password']);
+        $date_of_birth = $_POST['date_of_birth'];
+        $phone_number = $_POST['phone_number'];
+        $is_admin = $_POST['is_admin'];
+
+        $stmt = $conn->prepare("INSERT INTO users (name, email, hash_password, date_of_birth, phone_number, is_admin) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$name, $email, $password, $date_of_birth, $phone_number, $is_admin]);
         echo "User created successfully.";
-    } else {
-        echo "Error creating user: " . $stmt->error;
     }
-}
 
+    $stmt = $conn->query("SELECT * FROM users");
+    $userList = $stmt->fetchAll();
 
-$userList = [];
-$result = $conn->query("SELECT * FROM users");
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $userList[] = $row;
-    }
-} else {
-    echo "No users found.";
-}
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
+        $user_id = $_POST['user_id'];
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $date_of_birth = $_POST['date_of_birth'];
+        $phone_number = $_POST['phone_number'];
+        $is_admin = $_POST['is_admin'];
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-
-    $user_id = $_POST['user_id'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $date_of_birth = $_POST['date_of_birth'];
-    $phone_number = $_POST['phone_number'];
-    $is_admin = $_POST['is_admin'];
-
-
-    $stmt = $conn->prepare("UPDATE users SET name=?, email=?, date_of_birth=?, phone_number=?, is_admin=? WHERE user_id=?");
-    $stmt->bind_param("sssssi", $name, $email, $date_of_birth, $phone_number, $is_admin, $user_id);
-    if ($stmt->execute()) {
+        $stmt = $conn->prepare("UPDATE users SET name=?, email=?, date_of_birth=?, phone_number=?, is_admin=? WHERE user_id=?");
+        $stmt->execute([$name, $email, $date_of_birth, $phone_number, $is_admin, $user_id]);
         echo "User updated successfully.";
-    } else {
-        echo "Error updating user: " . $stmt->error;
     }
-}
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
-    $user_id = $_GET['delete'];
-    $stmt = $conn->prepare("DELETE FROM users WHERE user_id=?");
-    $stmt->bind_param("i", $user_id);
-    if ($stmt->execute()) {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
+        $user_id = $_GET['delete'];
+        $stmt = $conn->prepare("DELETE FROM users WHERE user_id=?");
+        $stmt->execute([$user_id]);
         echo "User deleted successfully.";
-    } else {
-        echo "Error deleting user: " . $stmt->error;
     }
-    $stmt->close();
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
 }
-
 ?>
 
 <div class="container mt-4">
     <h1>Manage Users</h1>
-
 
     <form method="POST">
         <h3>Create User</h3>
@@ -95,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
         </select>
         <button type="submit" name="create">Create User</button>
     </form>
-
 
     <h3>Users List</h3>
     <table>
@@ -129,27 +100,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
     <?php
     if (isset($_GET['edit'])) {
         $user_id = $_GET['edit'];
-        $editUser = $conn->query("SELECT * FROM users WHERE user_id = $user_id");
-        if ($editUser->num_rows == 1) {
-            $user = $editUser->fetch_assoc();
+        $stmt = $conn->prepare("SELECT * FROM users WHERE user_id = ?");
+        $stmt->execute([$user_id]);
+        $editUser = $stmt->fetch();
+
+        if ($editUser) {
     ?>
             <h3>Edit User</h3>
             <form method="POST">
-                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
-                <input type="text" name="name" value="<?php echo $user['name']; ?>" required>
-                <input type="email" name="email" value="<?php echo $user['email']; ?>" required>
-                <input type="date" name="date_of_birth" value="<?php echo $user['date_of_birth']; ?>" required>
-                <input type="text" name="phone_number" value="<?php echo $user['phone_number']; ?>" required>
+                <input type="hidden" name="user_id" value="<?php echo $editUser['user_id']; ?>">
+                <input type="text" name="name" value="<?php echo $editUser['name']; ?>" required>
+                <input type="email" name="email" value="<?php echo $editUser['email']; ?>" required>
+                <input type="date" name="date_of_birth" value="<?php echo $editUser['date_of_birth']; ?>" required>
+                <input type="text" name="phone_number" value="<?php echo $editUser['phone_number']; ?>" required>
                 <select name="is_admin" required>
-                    <option value="1" <?php echo $user['is_admin'] == 1 ? 'selected' : ''; ?>>Admin</option>
-                    <option value="0" <?php echo $user['is_admin'] == 0 ? 'selected' : ''; ?>>User</option>
+                    <option value="1" <?php echo $editUser['is_admin'] == 1 ? 'selected' : ''; ?>>Admin</option>
+                    <option value="0" <?php echo $editUser['is_admin'] == 0 ? 'selected' : ''; ?>>User</option>
                 </select>
                 <button type="submit" name="update">Update User</button>
             </form>
-    <?php } else {
+    <?php
+        } else {
             echo "User not found.";
         }
     }
     ?>
 </div>
-<a class="btn btn-secondary mt-3" href="../admin.php">Back to Admin Page</a>

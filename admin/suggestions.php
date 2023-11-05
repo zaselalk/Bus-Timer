@@ -1,58 +1,37 @@
 <?php
 include_once '../partials/header.php';
+include_once '../conn.php';
+include_once './admin_navbar.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "root1234";
-$dbname = "bus_timer";
+try {
 
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
+        $message = $_POST['message'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
-    $message = $_POST['message'];
+        $stmt = $conn->prepare("INSERT INTO suggestions (message) VALUES (?)");
+        $stmt->execute([$message]);
 
-    $stmt = $conn->prepare("INSERT INTO suggestions (message) VALUES (?)");
-    $stmt->bind_param("s", $message);
-
-    if ($stmt->execute()) {
         echo "Suggestion added successfully.";
-    } else {
-        echo "Error adding suggestion: " . $stmt->error;
     }
-}
 
-$suggestionsList = [];
-$result = $conn->query("SELECT * FROM suggestions");
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $suggestionsList[] = $row;
-    }
-} else {
-    echo "No suggestions found.";
-}
+    $stmt = $conn->query("SELECT * FROM suggestions");
+    $suggestionsList = $stmt->fetchAll();
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
-    $suggestion_id = $_GET['delete'];
-    $stmt = $conn->prepare("DELETE FROM suggestions WHERE id=?");
-    $stmt->bind_param("i", $suggestion_id);
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
+        $suggestion_id = $_GET['delete'];
+        $stmt = $conn->prepare("DELETE FROM suggestions WHERE id=?");
+        $stmt->execute([$suggestion_id]);
 
-    if ($stmt->execute()) {
         echo "Suggestion deleted successfully.";
-    } else {
-        echo "Error deleting suggestion: " . $stmt->error;
     }
-    $stmt->close();
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
 }
 ?>
 
 <div class="container mt-4">
-<?php
-  include_once './admin_navbar.php';
- ?>
+
     <h1>Manage Bus Suggestions</h1>
 
     <form method="POST">
@@ -74,5 +53,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
         ?>
     </ul>
 </div>
-
-<a class="btn btn-secondary mt-3" href="../admin.php">Back to Admin Page</a>
