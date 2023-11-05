@@ -56,20 +56,20 @@ try {
 
     <form method="POST">
         <h3>Create User</h3>
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="date" name="date_of_birth" required>
-        <input type="text" name="phone_number" placeholder="Phone Number" required>
-        <select name="is_admin" required>
+        <input type="text" class="form-control" name="name" placeholder="Name" required>
+        <input type="email" class="form-control" name="email" placeholder="Email" required>
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
+        <input type="date" class="form-control" name="date_of_birth" required>
+        <input type="text" class="form-control" name="phone_number" placeholder="Phone Number" required>
+        <select name="is_admin" class="form-control" required>
             <option value="1">Admin</option>
             <option value="0">User</option>
         </select>
-        <button type="submit" name="create">Create User</button>
+        <button type="submit" name="create" class="btn btn-primary">Create User</button>
     </form>
 
     <h3>Users List</h3>
-    <table>
+    <table class="table">
         <tr>
             <th>User ID</th>
             <th>Name</th>
@@ -89,8 +89,8 @@ try {
             echo "<td>" . $user["phone_number"] . "</td>";
             echo "<td>" . ($user["is_admin"] ? "Admin" : "User") . "</td>";
             echo "<td>
-                <a href='users.php?edit=" . $user["user_id"] . "'>Edit</a>
-                <a href='users.php?delete=" . $user["user_id"] . "'>Delete</a>
+                <a href='users.php?edit=" . $user["user_id"] ."' class='btn btn-primary btn-sm'>Edit</a>
+                <a href='users.php?delete=" . $user["user_id"] . "' class='btn btn-danger btn-sm'>Delete</a>
             </td>";
             echo "</tr>";
         }

@@ -73,7 +73,7 @@
             $currentTime = date('H:i:s');
 
             $query = "SELECT bus_no, time FROM bus_route WHERE bus_station = :station AND time > :current_time ORDER BY time ASC LIMIT 5";
-            $statement = $connect->prepare($query);
+            $statement = $conn->prepare($query);
             $statement->execute(array(':station' => $selectedStation, ':current_time' => $currentTime));
             $timetable = $statement->fetchAll(PDO::FETCH_ASSOC);
 
