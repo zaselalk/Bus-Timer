@@ -20,73 +20,60 @@
 </head>
 
 <body>
- <?php
+  <?php
   include_once './admin_navbar.php';
- ?>
+  ?>
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-10">
+  
+    <div class="row g-2  justify-content-md-center">
+      <div class="col-md-4 ">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Wi-Fi Connectivity Issues</h5>
-            <p class="card-text">
-              Many hostel residents are experiencing frequent Wi-Fi
-              connectivity problems. The inconsistent internet connection
-              disrupts their ability to study, work, or relax with online
-              entertainment. This issue has been ongoing for several weeks,
-              causing frustration and inconvenience to the hostel community.
-            </p>
-            <div>Room No: 209</div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Noise Disturbances During Quiet Hours</h5>
-            <p class="card-text">
-              Despite clear quiet hours policy, there have been recurrent
-              disturbances during the night, with loud conversations, music,
-              and other disruptive activities. This is affecting the quality
-              of sleep and causing discomfort to those who need a peaceful
-              environment to rest and prepare for the next day.
-            </p>
-            <div>Room No: 209</div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Hygiene and Cleanliness Concerns</h5>
-            <p class="card-text">
-              Some common areas, bathrooms, and kitchens in the hostel have
-              not been adequately cleaned or maintained. This is a major
-              concern for the residents, as it not only affects their overall
-              living conditions but also poses health risks. Proper cleaning
-              schedules and maintenance are needed urgently.
-            </p>
-            <div>Room No: 209</div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Security and Access Control Issues</h5>
-            <p class="card-text">
-              There have been reports of unauthorized individuals gaining
-              access to the hostel premises, which raises concerns about the
-              safety and security of residents. The malfunctioning of key card
-              systems and ineffective security measures need to be addressed
-              to ensure the safety and well-being of everyone residing in the
-              hostel.
-            </p>
-            <div>Room No: 209</div>
+            <h5 class="card-title">Manage Categories</h5>
+            <a href="/jobs/admin/categories" class="btn btn-primary">Manage</a>
           </div>
         </div>
       </div>
-      <div class="col-md-2 card bg-danger text-white pt-3">
-        <h6>Overdue Complains</h6>
-        <p>Total: 03</p>
+      <div class="col-md-4 ">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Manage Sources</h5>
+            <a href="/jobs/admin/sources" class="btn btn-primary">Manage</a>
+          </div>
+        </div>
       </div>
+      <div class="col-md-4 ">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Manage FAQ</h5>
+            <a href="/jobs/admin/faq" class="btn btn-primary">Manage</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 ">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Manage Company</h5>
+            <a href="#" class="btn btn-primary">Manage</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 ">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Manage Jobs</h5>
+            <a href="#" class="btn btn-primary">Manage</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+ 
+
+
+
 
   <!-- Include Bootstrap JS and Popper.js (optional) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

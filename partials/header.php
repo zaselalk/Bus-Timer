@@ -1,3 +1,6 @@
+<?php
+   session_start();
+   ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +10,5 @@
   <link rel="stylesheet" href="/bus-timer/styles/bootstrap.min.css">
   <script src="./scripts/bootstrap.min.js"></script>
 
-  <?php
-   session_start();
+  
    

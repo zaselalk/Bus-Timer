@@ -1,6 +1,8 @@
 <!-- if login -->
+<?php include_once 'partials/header.php'; ?>
 <?php
-session_start();
+
+
 if (isset($_SESSION['user'])) {
   //check is admin
   if ($_SESSION['user']['is_admin'] == 1) {
@@ -14,7 +16,7 @@ if (isset($_SESSION['user'])) {
 ?>
 
 
-<?php include_once 'partials/header.php'; ?>
+
 <title>Login Page</title>
 </head>
 
@@ -31,7 +33,7 @@ if (isset($_SESSION['user'])) {
 
 
   ?>
-  <div class="container">
+  <div class="container mt-5">
     <?php
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -66,27 +68,22 @@ if (isset($_SESSION['user'])) {
         <div class="col-md-6">
           <form>
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" name='email' aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              <label for="exampleInputEmail1" class="form-label" >Email address</label>
+              <input type="email" class="form-control" name='email' aria-describedby="emailHelp" required>
+              
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" name='password'>
-              <div id="pwdHelp" class="form-text">Your Password is protected with me</div>
+              <input type="password" class="form-control" name='password' required>
             </div>
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Login</button>
           </form>
         </div>
         <div class="col-md-6"></div>
       </div>
       <div class="form-text">
         <p>
-          If you are new,then <a href='register.php'>sign_up </a> here
+          Havent registerd yet? then <a href='register.php'>Register </a>
         </p>
       </div>
 </body>

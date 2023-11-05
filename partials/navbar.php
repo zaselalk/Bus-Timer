@@ -25,13 +25,13 @@
         if (isset($_SESSION['user'])) {
 
           print_r($_SESSION['user']);
-          echo '<button class="btn btn-outline-success" type="submit"><a href="/bus-timer/logout.php">Logout</a></button>';
+          echo '<a href="/bus-timer/logout.php">Logout</a>';
           echo '<button class="btn btn-outline-success" type="submit"><a href="/bus-timer/admin/index.php">Dashboard</a></button>';
 
         } else {
 
           
-          echo '<button class="btn btn-outline-success" type="submit"><a href="/bus-timer/register.php">Register</a></button>';
+          echo '<a href="/bus-timer/login.php" class="btn btn-primary" >Login</a>';
         }
         ?>
 
