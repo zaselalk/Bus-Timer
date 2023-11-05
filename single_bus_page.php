@@ -6,17 +6,19 @@
 
 <?php
 $servername = "localhost";
-$username = "root"; // Replace with your MySQL username
-$password = "sandali2001"; // Replace with your MySQL password
-$dbname = "bus_database";
+$username = "root"; 
+$password = "root1234"; 
+$dbname = "bus_route";
 
 if (isset($_GET['id'])) {
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check connection
+  
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+
+
 
     $id = $_GET['id'];
     $sql = "SELECT * FROM buses WHERE bus_name = '$id'";
