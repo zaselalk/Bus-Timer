@@ -21,7 +21,7 @@
             $servername = "localhost";
             $username = "root";
             $password = "root1234";
-            $database = "bus_timer";
+            $database = "bus_route";
 
             $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -78,7 +78,7 @@
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_FILES["profile_picture"]) && $_FILES["profile_picture"]["error"] == UPLOAD_ERR_OK) {
-            $uploadDir = 'D:\xampp\htdocs\Bus-Timer\profile_picture';
+            $uploadDir = 'C:\wamp64\www\Bus Timer Project\Bus-Timer\profile_picture';
 
             $filename = uniqid() . '_' . $_FILES["profile_picture"]["name"];
             $uploadPath = $uploadDir . '/' . $filename;
@@ -89,7 +89,7 @@
                 $servername = "localhost";
                 $username = "root";
                 $password = "root1234";
-                $database = "bus_timer";
+                $database = "bus_route";
 
                 $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -101,7 +101,7 @@
 
                 $sql = "UPDATE users SET user_profile_pic = ? WHERE user_id = ?";
                 $stmt = mysqli_prepare($conn, $sql);
-                mysqli_stmt_bind_param($stmt, "si", $uploadPath, $user_id);
+                mysqli_stmt_bind_param($stmt, "si", $filename, $user_id);
 
                 if (mysqli_stmt_execute($stmt)) {
                     echo "Profile picture location stored in the database.";
