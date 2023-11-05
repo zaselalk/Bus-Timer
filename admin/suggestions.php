@@ -2,18 +2,11 @@
 include_once '../partials/header.php';
 include_once '../conn.php';
 include_once './admin_navbar.php';
+include_once './is_admin.php';
 
 try {
 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
-        $message = $_POST['message'];
-
-        $stmt = $conn->prepare("INSERT INTO suggestions (message) VALUES (?)");
-        $stmt->execute([$message]);
-
-        echo "Suggestion added successfully.";
-    }
 
     $stmt = $conn->query("SELECT * FROM suggestions");
     $suggestionsList = $stmt->fetchAll();
@@ -34,13 +27,7 @@ try {
 
     <h1>Manage Bus Suggestions</h1>
 
-    <form method="POST">
-        <h3>Add Suggestion</h3>
-        <div class="mb-3">
-            <textarea name="message" class="form-control" rows="3" placeholder="Suggestion" required></textarea>
-        </div>
-        <button type="submit" name="create" class="btn btn-primary">Add Suggestion</button>
-    </form>
+
 
     <h3>Suggestions List</h3>
     <ul class="list-group">

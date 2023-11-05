@@ -1,12 +1,8 @@
 <?php
-
 include_once '../partials/header.php';
-if (!isset($_SESSION['user'])) {
-    header("location: ../index.php");
-}
-
 include_once './admin_navbar.php';
 include_once '../conn.php';
+include_once './is_admin.php';
 
 try {
 
