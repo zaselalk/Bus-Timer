@@ -20,30 +20,9 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between p-3">
-    <div>
-      <a class="navbar-brand" href="/pages/subwarden/">Dashboard</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link active" href="./profile.html">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./settings.html">Settings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./complain.html">Complaints</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+ <?php
+  include_once './admin_navbar.php';
+ ?>
 
   <div class="container">
     <div class="row">

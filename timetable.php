@@ -14,7 +14,12 @@
     ORDER BY bus_station ASC
   ";
 
-  $result = $conn ->query($query);
+  $stmt = $conn->prepare($query);
+  $stmt->execute();
+
+  $result = $stmt->fetchAll();
+
+
 
   ?>
   <link href="styles/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +51,7 @@
       <div class="col-md-6">
         <?php
         $query = "SELECT * FROM bus_route";
-        $statement = $connect->prepare($query);
+        $statement = $conn->prepare($query);
         $statement->execute();
         $timetable = $statement->fetchAll(PDO::FETCH_ASSOC);
 

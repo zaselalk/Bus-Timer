@@ -2,6 +2,7 @@
 include_once 'partials/header.php';
 $title = "Time Table";
 include_once 'partials/navbar.php';
+include_once 'conn.php';
 ?>
 <body>
 <div class="container">
@@ -44,12 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $dob = $_POST['date_of_birth'];
     $phone_number = $_POST['phone_number'];
-
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $hashed_password = md5($password);
     
-
-    include_once 'conn.php';
-
     $sql = "INSERT INTO users (name, email, hash_password, date_of_birth, phone_number) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$name, $email, $hashed_password, $dob, $phone_number]);

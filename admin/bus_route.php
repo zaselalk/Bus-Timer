@@ -69,6 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
 
 <div class="container mt-4">
     <h1>Manage Bus Routes</h1>
+    <?php
+  include_once './admin_navbar.php';
+ ?>
 
     <form method="POST">
         <h3>Create Bus Route</h3>

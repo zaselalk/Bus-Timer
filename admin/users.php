@@ -3,7 +3,7 @@ include_once '../partials/header.php';
 
 $servername = "localhost";
 $username = "root";
-$password = "root1234";
+$password = "";
 $dbname = "bus_timer";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

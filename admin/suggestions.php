@@ -50,6 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete'])) {
 ?>
 
 <div class="container mt-4">
+<?php
+  include_once './admin_navbar.php';
+ ?>
     <h1>Manage Bus Suggestions</h1>
 
     <form method="POST">
