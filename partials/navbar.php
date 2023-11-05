@@ -10,10 +10,14 @@
           <a class="nav-link active" aria-current="page" href="/bus-timer/index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/bus-timer/timetable.php">Time Table</a>
+          <a class="nav-link" href="./timetable.php">Time Table</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="./complaint.php">Complain</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/bus-timer/contact.php">Contact Us</a>
+          <a class="nav-link" href="./suggestion.php">Suggestions</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -26,7 +30,11 @@
 
 
           echo '<a href="/bus-timer/logout.php">Logout</a>';
-          echo '<button class="btn btn-outline-success" type="submit"><a href="/bus-timer/admin/index.php">Dashboard</a></button>';
+
+          if ($_SESSION['user']['is_admin'] == 'Y') {
+
+            echo '<button class="btn btn-outline-success" type="submit"><a href="/bus-timer/admin/index.php">Dashboard</a></button>';
+          }
         } else {
 
 
