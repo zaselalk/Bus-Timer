@@ -13,26 +13,46 @@
     <?php include_once 'partials/navbar.php'; ?>
     <div class="container">
         <h1 class="text-primary">User Profile</h1>
-        <?php echo 'Profile ID: ' .$_SESSION['user']['user_id']; ?>
+        <?php
+        include_once 'conn.php';
+
+        $user_id = $_SESSION['user']['user_id'];
+        $sql = "SELECT user_profile_pic FROM users WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$user_id]);
+        $userProfilePic = $stmt->fetchColumn();
+        if (is_null($userProfilePic)) {
+            $userProfilePic = 'profile_picture\default.png';
+        }else{
+            $userProfilePic = 'profile_picture\\'. $userProfilePic;
+        }
+        // echo $userProfilePic;
+        $sql = "SELECT name, email, date_of_birth, phone_number FROM users WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$user_id]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result[0]['name']
+        ?>
+        <img src="<?php echo $userProfilePic; ?>" alt="Profile Picture" class="img-fluid" width="200px" style="border-radius: 45%;">
         <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" class="form-control" name="name" value="John Doe">
+                <input type="text" class="form-control" name="name" value=<?php echo $result[0]['name']; ?>>
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" name="email" value="john.doe@example.com">
+                <input type="email" class="form-control" name="email" value=<?php echo $result[0]['email']; ?>>
             </div>
 
             <div class "form-group">
                 <label for="date_of_birth">Date of Birth:</label>
-                <input type="date" class="form-control" name="date_of_birth" value="1990-01-01">
+                <input type="date" class="form-control" name="date_of_birth" value=<?php echo $result[0]['date_of_birth']; ?>>
             </div>
 
             <div class="form-group">
                 <label for="phone_number">Phone Number:</label>
-                <input type="tel" class="form-control" name="phone_number" value="(123) 456-7890">
+                <input type="tel" class="form-control" name="phone_number" value=<?php echo $result[0]['phone_number']; ?>>
             </div>
 
             <div class="form-group">
@@ -45,8 +65,7 @@
     </div>
 
     <?php
-    include_once 'conn.php';
-    
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $newName = $_POST['name'];
         $newEmail = $_POST['email'];
